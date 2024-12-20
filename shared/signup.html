@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center vh-100 flex-column">
+        <form action="../shared/signup.php" method="post" class="bg-secondary p-4" onsubmit="return validate()">
+            <h1 class="text-center text-white">Register</h1>
+            <input type="text" class="form-control mt-2" name="username" placeholder="Full name"  required>
+            <input type="password" class="form-control mt-2" name="upass1" placeholder="Password" id="pass1" required>
+            <input type="password" class="form-control mt-2" name="upass2" placeholder="Confirm Password" id="pass2" required>
+            <select class="form-control mt-2" name="user_type" id="" required>
+                <option value="Customer">Customer</option>
+                <option value="Vendor">Vendor</option>
+            </select>
+            <div class="text-center">
+                <button type="submit" class="btn btn-warning mt-3">Signup</button>
+            </div>
+        </form>
+        <div class="text-center">
+            <p>Already have and account? <a href="login.html">Login</a></p>
+        </div>
+    </div>
+
+    <script>
+        function validate() {
+            const password = document.getElementById("pass1");
+            const confirmPassword = document.getElementById("pass2");
+
+            if(password.value === confirmPassword.value) {
+                return true;
+            }
+            alert("Password isn't matched");
+            return false;
+        }
+    </script>
+</body>
+</html>

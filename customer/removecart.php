@@ -1,0 +1,33 @@
+<?php
+// user authorization
+session_start();
+
+if (!isset($_SESSION['login_status'])) {
+    echo "You skipped login...";
+    echo "<a href='../shared/login.html'>Login</a>";
+    die;
+}
+
+// user has entered wrong credential
+if ($_SESSION['login_status'] == false) {
+    echo "Invalid login credential!<br>";
+    echo "<a href='../shared/login.html'>Login</a>";
+    die;
+}
+
+if ($_SESSION['usertype'] != 'Customer') {
+    echo "Unauthorized access to this user";
+    die;
+}
+
+include "../shared/connection.php";
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $cart_id = $_POST['cartid'];
+    $status = mysqli_query($conn, "delete from cart where cartid = $cart_id");
+
+    // send a success response to javascript
+    echo "success";
+} else {
+    echo "Invalid Request Method";
+}
+?>
